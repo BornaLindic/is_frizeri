@@ -1,0 +1,23 @@
+rezervacija
+- id
+- email
+- broj
+- datum (dan, mjesec, godina)
+- id_termin
+
+termin
+- id (1-6)
+- vrijeme
+
+datum
+- datum
+- radni_dan
+- rezervacija
+
+users
+
+roles
+
+products
+
+categories

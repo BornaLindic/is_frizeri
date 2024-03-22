@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Register
+        link(rel="stylesheet" href="../styles/style.css")
+    body
+        form(action="/auth/login" method="post")
+            div(class="container")
+                h1 Log in
+                p Unesite email i lozinku.
+
+                hr
+
+                label(for="email") <b>Email</b>
+                input(type="text" placeholder="Upišite email" name="email" id="email" required)
+
+                label(for="lozinka") <b>Lozinka</b>
+                input(type="password" placeholder="Upišite lozinku" name="password" id="password" required)
+
+                hr
+
+                button(type="submit") Prijava 
+
+            div(class="container signin")
+                p Nemate račun? Napravite ga!
+                a(href="/login") Registracija
+            

@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Register
+        link(rel="stylesheet" href="../styles/style.css")
+    body
+        form(action="/auth/register" method="post")
+            div(class="container")
+                h1 Registracija
+                p Molimo popunite podatke.
+
+                hr
+
+                label(for="ime") <b>Ime</b>
+                input(type="text" placeholder="Upišite ime" name="first_name" id="first_name" required)
+
+                label(for="prezime") <b>Prezime</b>
+                input(type="text" placeholder="Upišite prezime" name="last_name" id="last_name" required)
+
+                label(for="email") <b>Email</b>
+                input(type="text" placeholder="Upišite email" name="email" id="email" required)
+
+                label(for="lozinka") <b>Lozinka</b>
+                input(type="password" placeholder="Upišite lozinku" name="password" id="password" required)
+
+                hr
+
+                button(type="submit") Registriraj se! 
+
+            div(class="container signin")
+                p Već imate račun?
+                a(href="/login") Prijava
+            

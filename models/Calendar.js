@@ -33,15 +33,15 @@ const dbGetDataForUser = async () => {
     
     select
         case
+            when slobodnihTermina = 0 OR not radni_dan then
+                'Nema slobodnih termina'
             when slobodnihTermina is null then
                 'Slobodnih termina: ' || (select count(*) from "TESTNI_SALON".termin)
-            when slobodnihTermina = 0 then
-                'Nema slobodnih termina'
             else 'Slobodnih termina: ' || slobodnihTermina
         end "eventName",
         'user' calendar,
         case
-            when slobodnihTermina = 0 then 'red'
+            when slobodnihTermina = 0 OR not radni_dan then 'red'
             else 'green'
         end color,
         extract(day from d.dan)::int "day",

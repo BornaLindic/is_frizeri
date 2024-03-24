@@ -242,15 +242,13 @@
       var square = createElement('div', 'event-category ' + ev.color);
       var span = createElement('span', '', ev.eventName);
       
-      console.log(ev);
       div.appendChild(square);
       div.appendChild(span);
       wrapper.appendChild(div);
 
       if(ev.eventName !== 'Nema slobodnih termina' && ev.calendar === 'user') {
         var reservationLink = createElement('a', 'event event-link', 'Rezerviraj sada!')
-        console.log(ev);
-        reservationLink.href = `/makeReservation?day=${ev.day}&month=${ev.month}`
+        reservationLink.href = `/reservation?day=${ev.day}&month=${ev.month}&year=${ev.year}`
         wrapper.appendChild(reservationLink)
       }
     });
@@ -364,8 +362,9 @@
   } else {
     response = await fetch("/calendar");
   }
+
   const data = await response.json()
-  console.log(data)
+  //console.log(data)
 
   function addDate(ev) {
     

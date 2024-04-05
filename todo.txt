@@ -1,0 +1,6 @@
+- provjera da je mail u ispravnom formatu na backu
+- foreign keyeve u bazu
+- moj profil: prikaz i otkazivanje aktivnih rezervacija, prikaz i izmjena osobnih podataka
+
+crud za proizvode
+frontend dizajn

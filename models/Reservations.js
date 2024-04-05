@@ -18,7 +18,7 @@ export default class Reservation {
         let reservations = []
 
         if( results.length > 0 ) {
-            for(row in results) {
+            for(let row in results) {
                 let newReservation = new Reservation(row.email,
                                                      row.tel,
                                                      row.datum,
@@ -59,7 +59,8 @@ const dbGetFreeSpotsForDate = async (date) => {
     from "TESTNI_SALON".termin
     where vrijeme not in (
     select vrijeme
-    from "TESTNI_SALON".rezervacija NATURAL JOIN "TESTNI_SALON".termin
+    from "TESTNI_SALON".rezervacija JOIN "TESTNI_SALON".termin
+    ON "TESTNI_SALON".rezervacija.id_termin = "TESTNI_SALON".termin."ID"
     where datum = '${date}'
     );`;
     try {
@@ -89,7 +90,7 @@ const dbNewReservation = async (reservation) => {
     ) RETURNING "ID"`;
     try {
         const result = await query(sql, []);
-        return result.rows[0].id;
+        return result.rows[0].ID;
     } catch (err) {
         console.log(err);
         throw err

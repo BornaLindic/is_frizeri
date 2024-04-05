@@ -100,7 +100,7 @@ const dbNewUser = async (user) => {
     ) RETURNING "ID"`;
     try {
         const result = await query(sql, []);
-        return result.rows[0].id;
+        return result.rows[0].ID;
     } catch (err) {
         console.log(err);
         throw err

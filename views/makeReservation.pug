@@ -6,27 +6,24 @@ html(lang="en")
         title Register
         link(rel="stylesheet" href="../styles/style.css")
     body
-
-        h1 #{freeSlots}
-
         form(action="/reservation" method="post")
             div(class="container")
-                h1 Log in
-                p Unesite email i lozinku.
+                h1 Rezervacija termina
+                p Odaberite vrijeme i unesite kontakt telefon
 
                 hr
 
-                label(for="email") <b>Email</b>
-                input(type="text" placeholder="Upišite email" name="email" id="email" required)
+                <b>Termin</b>
+                select(name="time" id="time")
+                    each slot in freeSlots 
+                        option(value=slot.ID) #{slot.vrijeme}
 
-                label(for="lozinka") <b>Lozinka</b>
-                input(type="password" placeholder="Upišite lozinku" name="password" id="password" required)
+                label(for="tel") <b>Broj telefona</b>
+                input(type="text" placeholder="Upišite broj" name="tel" id="tel" required)
 
-                hr
+                input(type="hidden" id="year" name="year" value=date.year)
+                input(type="hidden" id="month" name="month" value=date.month)
+                input(type="hidden" id="day" name="day" value=date.day)
 
-                button(type="submit") Prijava 
-
-            div(class="container signin")
-                p Nemate račun? Napravite ga!
-                a(href="/login") Registracija
+                button(type="submit") Rezerviraj 
             

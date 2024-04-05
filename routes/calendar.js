@@ -1,5 +1,6 @@
 import express from "express"
 import { getAdminCalendar, getUserCalendar } from "../controllers/calendar.js"
+import { verifyAdmin } from "../utils/verify.js";
 
 
 const router = express.Router();
@@ -8,6 +9,6 @@ const router = express.Router();
 router.get("/", getUserCalendar);
 
 // get calendar data for admin view
-router.get("/admin", getAdminCalendar);
+router.get("/admin", verifyAdmin, getAdminCalendar);
 
 export default router

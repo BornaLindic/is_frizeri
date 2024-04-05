@@ -14,6 +14,12 @@ export const loginView = async (req, res, next) => {
 
 export const register = async (req, res, next) => {
     try {
+
+        if(await User.fetchByEmail(req.body.email)) {
+            res.render("../views/register.pug", {userExists: true})
+            return
+        }
+
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -25,7 +31,6 @@ export const register = async (req, res, next) => {
         );
 
         await newUser.persist();
-
         const token = jwt.sign({id:newUser.id, role: newUser.role}, process.env.JWT_SECRET_KEY)
         
         const {password, role, ...otherDetails} = newUser;

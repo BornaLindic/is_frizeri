@@ -9,7 +9,10 @@ html(lang="en")
         form(action="/auth/register" method="post")
             div(class="container")
                 h1 Registracija
-                p Molimo popunite podatke.
+                if userExists
+                    p Korisnik s ovim email-om već postoji!
+                else
+                    p Molimo popunite podatke.
 
                 hr
 

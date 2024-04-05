@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Frizeraj
+        link(rel="stylesheet" href="../styles/style.css")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js")
+    body
+        header header
+
+        if loggedIn
+            a(href="/myProfile" class="event-link") Moj profil <br>
+            a(href="/auth/logout" class="event-link") Odjavi se! <br>
+        else
+            a(href="/auth/login" class="event-link") Prijavi se! <br>
+            a(href="/auth/register" class="event-link") Registriraj se!
+
+        h1 Ludi i nezaboravni frizerski salon</h1>
+        
+        h2 O nama 
+        p Nebi covjek reko, tu ide o njima
+        
+        h2 Kontakt 
+        p Kako ih kontaktirati i gdje se nalaze
+        
+        h2 Proizvodi
+        p Stvari koje prodaju po kategorijama
+
+        h2 Cjenik usluga
+        p Nema cjenkanja kako je tako je!
+
+        h2 Rezerviraj termin!
+        div
+            div(id="calendar")
+            script(src="scripts/drawCalendar.js")
+
+        footer footer

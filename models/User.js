@@ -18,7 +18,7 @@ export default class User {
     static async fetchByEmail(email) {
 
         let results = await dbGetUserByEmail(email)
-        let newUser = new User()
+        let newUser = undefined
 
         if( results.length > 0 ) {
             newUser = new User( results[0].ime,

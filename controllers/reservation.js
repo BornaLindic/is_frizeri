@@ -5,7 +5,9 @@ export const getFreeSpotsForDate = async (req, res, next) => {
         let date = `${req.query.year}-${req.query.month}-${req.query.day}`;
         let freeSlots = await Reservation.fetchFreeSpotsForDate(date);
 
-        res.status(200).json(freeSlots)
+        res.render("../views/makeReservation.pug", {
+            freeSlots: freeSlots
+        });
     } catch(err) {
         next(err)
     }

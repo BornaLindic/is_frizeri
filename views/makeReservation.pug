@@ -6,14 +6,13 @@ html(lang="en")
         title Register
         link(rel="stylesheet" href="../styles/style.css")
     body
-        form(action="/auth/login" method="post")
+
+        h1 #{freeSlots}
+
+        form(action="/reservation" method="post")
             div(class="container")
                 h1 Log in
-
-                if failedLogin
-                    p Pogrešan email ili lozinka
-                else 
-                    p Unesite email i lozinku.
+                p Unesite email i lozinku.
 
                 hr
 
@@ -29,5 +28,5 @@ html(lang="en")
 
             div(class="container signin")
                 p Nemate račun? Napravite ga!
-                a(href="register" class="event-link") Registracija
+                a(href="/login") Registracija
             

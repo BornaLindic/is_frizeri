@@ -25,7 +25,12 @@ export const register = async (req, res, next) => {
         );
 
         await newUser.persist();
-        res.status(200).send("User has been created.");
+
+        const token = jwt.sign({id:newUser.id, role: newUser.role}, process.env.JWT_SECRET_KEY)
+        
+        const {password, role, ...otherDetails} = newUser;
+        res.cookie("access_token", token, {httpOnly:true})
+           .redirect("/")
         
     } catch(err) {
         next(err);
@@ -35,18 +40,33 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
     try {
         const user = await User.fetchByEmail(req.body.email);
-        if(!user) return next(createError(404, "User not found!"));
+        if(!user) {
+            res.render("../views/login.pug", {failedLogin: true})
+            return
+        }
 
         const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
-        if(!isPasswordCorrect) return next(createError(400, "Wrong password or username!"))
+        if(!isPasswordCorrect) {
+            res.render("../views/login.pug", {failedLogin: true})
+            return
+        }
 
-        const token = jwt.sign({id:user._id, isAdmin: user.isAdmin}, process.env.JWT_SECRET_KEY)
+        const token = jwt.sign({id:user.id, role: user.role}, process.env.JWT_SECRET_KEY)
 
         const {password, role, ...otherDetails} = user;
         res.cookie("access_token", token, {httpOnly:true})
-           .status(200)
-           .json({...otherDetails});
+           .redirect("/")
 
+    } catch(err) {
+        next(err);
+    }
+};
+
+
+export const logout = async (req, res, next) => {
+    try {
+        res.clearCookie("access_token")
+           .redirect("/")
     } catch(err) {
         next(err);
     }

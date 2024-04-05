@@ -22,6 +22,17 @@ app.use("/schedule", scheduleRouter);
 app.use("/calendar", calendarRouter);
 app.use("/reservation", reservationRouter);
 
+app.use((err, req, res, next) => {
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message || "Something went wrong";
+    res.status(errorStatus).json({
+        success:false,
+        status: errorStatus,
+        message: errorMessage,
+        stack: err.stack
+    });
+});
+
 app.listen(8800, async ()=> {
     console.log("Server started on 8800...");
 })

@@ -43,7 +43,7 @@ export default class User {
                                 results[0].email,
                                 results[0].lozinka,
                                 results[0].uloga)
-            newUser.id = results[0].id
+            newUser.id = results[0].ID
         }
         return newUser
     }

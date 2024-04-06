@@ -1,4 +1,4 @@
-import Reservation from "../models/Reservations.js";
+import Reservation from "../models/Reservation.js";
 import User from "../models/User.js"
 
 export const getFreeSpotsForDate = async (req, res, next) => {

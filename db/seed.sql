@@ -70,9 +70,6 @@ CREATE TABLE "TESTNI_SALON".KORISNIK (
 	ULOGA		SMALLINT		NOT NULL
 );
 
-INSERT INTO "TESTNI_SALON".KORISNIK VALUES
-(DEFAULT, 'admin@admin.com', 'admin', 'Admin', 'Admin', 1) RETURNING "ID";
-
 
 -------------------------------- ULOGA --------------------------------------
 DROP TABLE IF EXISTS "TESTNI_SALON".ULOGA;
@@ -84,4 +81,33 @@ CREATE TABLE "TESTNI_SALON".ULOGA (
 INSERT INTO "TESTNI_SALON".ULOGA VALUES 
 (0, 'korisnik'),
 (1, 'admin');
+
+
+-------------------------------- PROIZVOD --------------------------------------
+DROP TABLE IF EXISTS "TESTNI_SALON".PROIZVOD;
+CREATE TABLE "TESTNI_SALON".PROIZVOD (
+	"ID" 			SERIAL	 		PRIMARY KEY,
+	ID_KATEGORIJA	INTEGER			NOT NULL,
+	IME				VARCHAR(50) 	NOT NULL,
+	OPIS			VARCHAR 	 	NOT NULL,
+	CIJENA			INTEGER			NOT NULL,	
+	SLIKA			BYTEA
+);
+
+
+-------------------------------- KATEGORIJA --------------------------------------
+DROP TABLE IF EXISTS "TESTNI_SALON".KATEGORIJA;
+CREATE TABLE "TESTNI_SALON".KATEGORIJA (
+	"ID" 			INTEGER 		PRIMARY KEY,
+	IME_KATEGORIJE	VARCHAR(50)		NOT NULL
+);
+
+INSERT INTO "TESTNI_SALON".KATEGORIJA VALUES 
+(0, 'Njega'),
+(1, 'Styling'),
+(2, 'Oprema');
+
+
+
+
 

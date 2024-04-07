@@ -55,13 +55,15 @@ export default class Reservation {
 
 
 const dbGetFreeSpotsForDate = async (date) => {
-    const sql = `select "ID", vrijeme
+    const sql = `select
+	"ID",
+	to_char(vrijeme_pocetak, 'HH:MM') || ' - ' || to_char(vrijeme_kraj, 'HH:MM') as vrijeme
     from "TESTNI_SALON".termin
-    where vrijeme not in (
-    select vrijeme
+    where "ID" not in (
+    select "TESTNI_SALON".termin."ID"
     from "TESTNI_SALON".rezervacija JOIN "TESTNI_SALON".termin
     ON "TESTNI_SALON".rezervacija.id_termin = "TESTNI_SALON".termin."ID"
-    where datum = '${date}'
+	where datum = '${date}'
     );`;
     try {
         const result = await query(sql, []);

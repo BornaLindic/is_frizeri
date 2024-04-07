@@ -63,7 +63,8 @@ const dbGetDataForUser = async () => {
 const dbGetDataForAdmin = async () => {
     const sql = `
     select
-        '[' || vrijeme || '] ' || ime || ' ' || prezime || ', ' || tel as "eventName",
+        '[' || to_char(vrijeme_pocetak, 'HH24:MM') || ' - ' || to_char(vrijeme_kraj, 'HH24:MM') || '] ' ||
+            ime || ' ' || prezime || ', ' || tel as "eventName",
         'admin' calendar,
         'orange' color,
         extract(day from datum)::int "day",

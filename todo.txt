@@ -1,6 +1,12 @@
+- prilagodit novu bazu
 - provjera da je mail u ispravnom formatu (back)
-- crud za proizvode (front)
+- podslat mail nakon rezervacije (back, al to na kraju da ne spammam sam sebe)
+- crud za proizvode: prikaz na frontu
+                     dodavanje brisanje update na frontu
+                     likeanje na frontu i backu
 - moj profil: prikaz i otkazivanje aktivnih rezervacija (front),
+              prikaz omiljenih proizvoda (fron back)
               prikaz i izmjena osobnih podataka (front, back)
+- dodat adminu da moze izbrisat rezervacije
 
 frontend dizajn

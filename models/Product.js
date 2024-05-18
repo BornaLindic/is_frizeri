@@ -2,13 +2,14 @@ import { query } from '../db/dbPool.js'
 
 export default class Product {
 
-    constructor(idKategorija, ime, opis, cijena, slika = undefined) {
+    constructor(idKategorija, ime, opis, cijena, slika = undefined, favorite = false) {
         this.id = undefined
         this.idKategorija = idKategorija
         this.ime = ime
         this.opis = opis
         this.cijena = cijena
         this.slika = slika
+        this.favorite = favorite
     }
 
 
@@ -19,7 +20,7 @@ export default class Product {
         let newProduct = new Product()
 
         if( results.length > 0 ) {
-            newProduct = new Product(results[0].idKategorija,
+            newProduct = new Product(results[0].id_kategorija,
                                      results[0].ime,
                                      results[0].opis,
                                      results[0].cijena,
@@ -57,6 +58,16 @@ export default class Product {
         await dbDeleteProduct(id)
     }
 
+    // dodavanje u favorite
+    static async addToFavorites(product_id, user_id) {
+        await dbAddToFavorites(product_id, user_id)
+    }
+
+    // micanje iz favorita
+    static async removeFromFavorites(product_id, user_id) {
+        await dbRemoveFromFavorites(product_id, user_id)
+    }
+
     //je li proizvod pohranjen u bazu podataka?
     isPersisted() {
         return this.id !== undefined
@@ -74,7 +85,6 @@ export default class Product {
     }
 
 }
-
 
 
 const dbGetProductById = async (id) => {
@@ -119,8 +129,7 @@ const dbUpdateProduct = async (newProduct) => {
         ID_KATEGORIJA = ${newProduct.idKategorija},
         IME = '${newProduct.ime}',
         OPIS = '${newProduct.opis}',
-        CIJENA = ${newProduct.cijena},
-        SLIKA = '${newProduct.slika}'
+        CIJENA = ${newProduct.cijena}
         WHERE "ID" = ${newProduct.id}`;
     try {
         await query(sql, []);
@@ -133,7 +142,32 @@ const dbUpdateProduct = async (newProduct) => {
 
 const dbDeleteProduct = async (id) => {
     const sql = `DELETE FROM "TESTNI_SALON".PROIZVOD
-        WHERE "ID" = ${id}`;
+        WHERE "ID" = ${id} CASCADE`;
+    try {
+        await query(sql, []);
+    } catch (err) {
+        console.log(err);
+        throw err
+    }
+}
+
+const dbAddToFavorites = async (product_id, user_id) => {
+    const sql = `
+    INSERT INTO "TESTNI_SALON".omiljeni_proizvod
+    VALUES (${product_id}, ${user_id})`;
+    try {
+        await query(sql, []);
+    } catch (err) {
+        console.log(err);
+        throw err
+    }
+}
+
+
+const dbRemoveFromFavorites = async (product_id, user_id) => {
+    const sql = `
+    DELETE FROM "TESTNI_SALON".omiljeni_proizvod
+    WHERE id_korisnik = ${product_id} AND id_proizvod = ${user_id}`;
     try {
         await query(sql, []);
     } catch (err) {

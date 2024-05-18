@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Doradi proizvod
+        link(rel="stylesheet" href="../styles/style.css")
+        
+    body
+        a(href="/products/admin" class="event-link") Nazad
+
+        h1 Izmjenite podatke
+        button(onclick=`fetch('/products?id=' + ${product.id},  {method: 'DELETE'})`) Obriši!
+
+        form(action="/products/putProduct" method="post")
+            div(class="container")
+
+                hr
+                label(for="Kategorija") <b>Kategorija proizvoda </b>
+                select(name="id_kategorija" id="id_kategorija")
+                    option(value=0) Njega
+                    option(value=1) Styling
+                    option(value=2) Oprema
+
+                label(for="Ime") <b>Ime proizvoda</b>
+                input(type="text" value=`${product.ime}` name="ime" id="ime" required)
+
+                label(for="Opis") <b>Opis proizvoda</b>
+                input(type="text" value=`${product.opis}` name="opis" id="opis" required)
+
+                label(for="Cijena") <b>Cijena proizvoda</b>
+                input(type="text" value=`${product.cijena}` name="cijena" id="cijena" required)
+
+                input(type="hidden" id="id" name="id" value=`${product.id}`)
+
+
+                button(type="submit") Ažuriraj 
+
+                
+            

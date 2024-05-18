@@ -7,8 +7,6 @@ html(lang="en")
         link(rel="stylesheet" href="../styles/style.css")
         script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js")
     body
-        header header
-
         if loggedIn
             a(href="/myProfile" class="event-link") Moj profil <br>
             a(href="/auth/logout" class="event-link") Odjavi se! <br>
@@ -16,23 +14,27 @@ html(lang="en")
             a(href="/auth/login" class="event-link") Prijavi se! <br>
             a(href="/auth/register" class="event-link") Registriraj se!
 
-        h1 Ludi i nezaboravni frizerski salon</h1>
-        
-        h2 O nama 
-        p Nebi covjek reko, tu ide o njima
-        
-        h2 Kontakt 
-        p Kako ih kontaktirati i gdje se nalaze
-        
-        h2 Proizvodi
-        p Stvari koje prodaju po kategorijama
+        div(class="main-page")
+            h1 Ludi i nezaboravni frizerski salon</h1>
+            
+            h2 O nama 
+            p Ovaj najluđi i najnezaboravniji frizerski salon ludo je i nezaboravno mjesto. Iza sebe imamo 
+            | dugogodišnju tradiciju ludih i nezaboravnih frizura.
+            
+            h2 Kontakt 
+            p tel: 091 098 099
+            p lokacija: Luda i nezaboravna ulica 21, Ludost i Nezaboravnost
+            
+            h2 Proizvodi
+            p Stvarno luda i nezaboravna ponuda
+            a(href="products" class="event-link") Vise sve!
 
-        h2 Cjenik usluga
-        p Kupi potrosi!
+            h2 Cjenik usluga
+            p Ludo šišanje - 10 €
+            p Nezaboravno šišanje - 12 €
 
-        h2 Rezerviraj termin!
-        div
-            div(id="calendar")
-            script(src="scripts/drawCalendar.js")
+            h2(id="reserve") Rezerviraj termin!
+            div
+                div(id="calendar")
+                script(src="scripts/drawCalendar.js")
 
-        footer footer

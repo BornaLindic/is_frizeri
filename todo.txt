@@ -4,8 +4,9 @@
 - crud za proizvode: prikaz na frontu
                      dodavanje brisanje update na frontu
                      likeanje na frontu i backu
+
 - moj profil: prikaz i otkazivanje aktivnih rezervacija (front),
-              prikaz omiljenih proizvoda (fron back)
+              prikaz omiljenih proizvodat (fron back)
               prikaz i izmjena osobnih podataka (front, back)
 - dodat adminu da moze izbrisat rezervacije
 

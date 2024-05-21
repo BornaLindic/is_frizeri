@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Dodaj dobavljaca
+        link(rel="stylesheet" href="../styles/style.css")
+        
+    body
+        a(href="/suppliers" class="event-link") Nazad
+
+        form(id="supplierForm" action="/suppliers" method="post")
+            div(class="container")
+                h1 Dodavanje dobavljača
+                p Ispunite podatke o novom dobavljaču
+
+                hr
+
+                div(class="form-el")
+                    label(for="Ime") <b>Ime dobavljača: </b>
+                    input(type="text" placeholder="Upišite ime dobavljača" name="ime" id="ime" required)
+
+                div(class="form-el")
+                    label(for="Email") <b>Email dobavljača: </b>
+                    input(type="email" placeholder="Upišite email dobavljača" name="email" id="email" required)
+
+                button(type="submit") Dodaj
+
+                
+            

@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Doradi proizvod
+        link(rel="stylesheet" href="../styles/style.css")
+        
+    body
+        a(href="/suppliers" class="event-link") Nazad
+
+        h1 Ažuriranje podataka za: #{supplier.ime}
+   
+
+        form(action="/suppliers/putSupplier" method="post")
+            div(class="container")
+                div(class="form-el")
+                    label(for="Ime") <b>Ime dobavljača: </b>
+                    input(type="text" value=`${supplier.ime}` name="ime" id="ime" required)
+
+                div(class="form-el")
+                    label(for="Email") <b>Email dobavljača: </b>
+                    input(type="email" value=`${supplier.email}` name="email" id="email" required)
+
+                input(type="hidden" id="id" name="id" value=`${supplier.id}`)
+
+
+                button(id="update-supplier" type="submit") Ažuriraj
+
+        button(id="delete-supplier" onclick=`if(confirm("Potvrdite brisanje!")){fetch('/suppliers?id='+${supplier.id},{method: 'DELETE'}); window.location.href = "/suppliers";}`) Obriši dobavljača!
+        
+        if success
+            p(id="update-success") Podaci ažurirani!
+
+        hr
+
+                
+            

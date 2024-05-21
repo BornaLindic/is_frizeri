@@ -91,8 +91,7 @@ CREATE TABLE "TESTNI_SALON".PROIZVOD (
 	ID_KATEGORIJA	INTEGER			NOT NULL,
 	IME				VARCHAR(50) 	NOT NULL,
 	OPIS			VARCHAR 	 	NOT NULL,
-	CIJENA			NUMERIC(5,2)	NOT NULL,	
-	SLIKA			BYTEA
+	CIJENA			NUMERIC(10,2)	NOT NULL
 );
 
 
@@ -118,6 +117,26 @@ CREATE TABLE "TESTNI_SALON".OMILJENI_PROIZVOD (
 );
 
 
+-------------------------------- DOBAVLJAC --------------------------------------
+DROP TABLE IF EXISTS "TESTNI_SALON".DOBAVLJAC;
+CREATE TABLE "TESTNI_SALON".DOBAVLJAC (
+	"ID" 	SERIAL PRIMARY KEY,
+	EMAIL   VARCHAR(100),
+	IME 	VARCHAR(500)
+);
+
+
+-------------------------------- PROIZVOD_DOBAVLJAC --------------------------------------
+DROP TABLE IF EXISTS "TESTNI_SALON".OMILJENI_PROIZVOD;
+CREATE TABLE "TESTNI_SALON".OMILJENI_PROIZVOD (
+	ID_PROIZVOD 		INTEGER,
+	ID_DOBAVLJAC 		INTEGER,
+	NABAVNA_CIJENA		NUMERIC(10,2),
+	PRSJ_DANA_ISPORUKE	INTEGER,
+	PRIMARY KEY (ID_PROIZVOD, ID_DOBAVLJAC)
+);
+
+
 -------------------------------- CONSTRAINTS --------------------------------------
 ALTER TABLE "TESTNI_SALON".REZERVACIJA ADD CONSTRAINT fk_REZERVACIJA_KORISNIK
 FOREIGN KEY (EMAIL) REFERENCES "TESTNI_SALON".KORISNIK(EMAIL);
@@ -139,6 +158,33 @@ FOREIGN KEY (ID_KORISNIK) REFERENCES "TESTNI_SALON".KORISNIK("ID");
 
 ALTER TABLE "TESTNI_SALON".OMILJENI_PROIZVOD ADD CONSTRAINT fk_OMILJENI_PROIZVOD_PROIZVOD
 FOREIGN KEY (ID_PROIZVOD) REFERENCES "TESTNI_SALON".PROIZVOD("ID");
+
+
+------------------------------------------------------------------------------------
+
+SELECT * FROM "TESTNI_SALON".PROIZVOD;
+
+TRUNCATE TABLE "TESTNI_SALON".proizvod;
+INSERT INTO "TESTNI_SALON".PROIZVOD VALUES
+(default, 0, 'Krema za kosu', 'Luda i nezaboravna krema za kosu', 9.1),
+(default, 0, 'Šampon za kosu', 'Ludi i nezaboravni šampon za kosu', 5.3),
+(default, 1, 'Gel', 'Da kosa stoji u zraku', 12),
+(default, 2, 'Škare', 'cvik cvik', 11.1),
+(default, 2, 'Mašinica', 'zzzzzzz', 9.9),
+(default, 2, 'Fen', 'ZZZZZZZZZZ', 129.13),
+(default, 2, 'Britvica', 'ksssss', 1.1)
+
+
+SELECT * FROM "TESTNI_SALON".dobavljac;
+
+TRUNCATE TABLE "TESTNI_SALON".dobavljac
+INSERT INTO "TESTNI_SALON".dobavljac VALUES
+(default, 'misko.miskic@gmail.com', 'Misko'),
+(default, 'joza.jozic@hotmail.com', 'Joza'),
+(default, 'stef.stefanovic@gmail.com', 'Stef')
+
+
+
 
 
 

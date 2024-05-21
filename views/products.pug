@@ -8,47 +8,46 @@ html(lang="en")
     body
         a(href="/" class="event-link") Nazad
 
-        form(action="/reservation" method="post")
-            div(class="container")
-                h1 Proizvodi
-                p
-                    a(href="products/addProduct" class="event-link") Dodaj novi proizvod!
+        div(class="container")
+            h1 Proizvodi
+            p
+                a(href="products/addProduct" class="event-link") Dodaj novi proizvod!
 
-                if care[0]
-                    hr
-                    h2 Njega
-                    div(class="gallery")
-                        each product in care
-                            div(class="gallery-item")
-                                div(class="image-container") 
-                                    h3 #{product.ime}
-                                    p #{product.opis}
-                                    p #{product.cijena} €
-                                    a(href=`/products/updateProduct?id=${product.id}` class="event-link") Detalji
+            if care[0]
+                hr
+                h2 Njega
+                div(class="gallery")
+                    each product in care
+                        div(class="gallery-item")
+                            div(class="image-container") 
+                                h3 #{product.ime}
+                                p #{product.opis}
+                                p #{product.cijena} €
+                                a(href=`/products/updateProduct?id=${product.id}` class="event-link") Detalji
 
-                if styling[0]
-                    hr
-                    h2 Styling
-                    div(class="gallery")
-                        each product in styling
-                            div(class="gallery-item")
-                                div(class="image-container") 
-                                    h3 #{product.ime}
-                                    p #{product.opis}
-                                    p #{product.cijena} €
-                                    a(href=`/products/updateProduct?id=${product.id}` class="event-link") Detalji
+            if styling[0]
+                hr
+                h2 Styling
+                div(class="gallery")
+                    each product in styling
+                        div(class="gallery-item")
+                            div(class="image-container") 
+                                h3 #{product.ime}
+                                p #{product.opis}
+                                p #{product.cijena} €
+                                a(href=`/products/updateProduct?id=${product.id}` class="event-link") Detalji
 
-                if equipment[0]
-                    hr
-                    h2 Oprema
-                    div(class="gallery")
-                        each product in equipment
-                            div(class="gallery-item")
-                                div(class="image-container") 
-                                    h3 #{product.ime}
-                                    p #{product.opis}
-                                    p #{product.cijena} €
-                                    a(href=`/products/updateProduct?id=${product.id}` class="event-link") Detalji
+            if equipment[0]
+                hr
+                h2 Oprema
+                div(class="gallery")
+                    each product in equipment
+                        div(class="gallery-item")
+                            div(class="image-container") 
+                                h3 #{product.ime}
+                                p #{product.opis}
+                                p #{product.cijena} €
+                                a(href=`/products/updateProduct?id=${product.id}` class="event-link") Detalji
 
 
             

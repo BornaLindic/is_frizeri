@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Dobavljaci
+        link(rel="stylesheet" href="../styles/style.css")
+    body
+        a(href="/" class="event-link") Nazad
+
+        div(class="container")
+            h1 Dobavljaci
+            p
+                a(href="suppliers/addSupplier" class="event-link") Dodaj novog dobavljaca!
+
+            hr
+            div(class="gallery")
+                each supplier in suppliers
+                    div(class="gallery-item")
+                        div(class="image-container") 
+                            h3 #{supplier.ime}
+                            p #{supplier.email}
+                            a(href=`/suppliers/updateSupplier?id=${supplier.id}` class="event-link") Detalji
+
+
+
+            

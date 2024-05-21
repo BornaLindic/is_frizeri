@@ -2,13 +2,12 @@ import { query } from '../db/dbPool.js'
 
 export default class Product {
 
-    constructor(idKategorija, ime, opis, cijena, slika = undefined, favorite = false) {
+    constructor(idKategorija, ime, opis, cijena, favorite = false) {
         this.id = undefined
         this.idKategorija = idKategorija
         this.ime = ime
         this.opis = opis
         this.cijena = cijena
-        this.slika = slika
         this.favorite = favorite
     }
 
@@ -23,8 +22,7 @@ export default class Product {
             newProduct = new Product(results[0].id_kategorija,
                                      results[0].ime,
                                      results[0].opis,
-                                     results[0].cijena,
-                                     results[0].slika)
+                                     results[0].cijena)
             newProduct.id = results[0].ID
         }
         return newProduct
@@ -40,8 +38,7 @@ export default class Product {
             let newProduct = new Product(row.id_kategorija,
                                          row.ime,
                                          row.opis,
-                                         row.cijena,
-                                         row.slika)
+                                         row.cijena)
             newProduct.id = row.ID
             products.push(newProduct)
         }
@@ -88,7 +85,7 @@ export default class Product {
 
 
 const dbGetProductById = async (id) => {
-    const sql = `SELECT "ID", ID_KATEGORIJA, IME, OPIS, CIJENA, SLIKA
+    const sql = `SELECT "ID", ID_KATEGORIJA, IME, OPIS, CIJENA
     FROM "TESTNI_SALON".PROIZVOD WHERE "ID" = ${id}`;
     try {
         const result = await query(sql, []);
@@ -100,7 +97,7 @@ const dbGetProductById = async (id) => {
 };
 
 const dbGetAllProducts = async () => {
-    const sql = `SELECT "ID", ID_KATEGORIJA, IME, OPIS, CIJENA, SLIKA
+    const sql = `SELECT "ID", ID_KATEGORIJA, IME, OPIS, CIJENA
     FROM "TESTNI_SALON".PROIZVOD`;
     try {
         const result = await query(sql, []);
@@ -113,7 +110,7 @@ const dbGetAllProducts = async () => {
 
 const dbNewProduct = async (product) => {
     const sql = `INSERT INTO "TESTNI_SALON".PROIZVOD VALUES (
-        default, ${product.idKategorija}, '${product.ime}', '${product.opis}', ${product.cijena}, '${product.slika}' 
+        default, ${product.idKategorija}, '${product.ime}', '${product.opis}', ${product.cijena}
     ) RETURNING "ID"`;
     try {
         const result = await query(sql, []);
@@ -141,8 +138,8 @@ const dbUpdateProduct = async (newProduct) => {
 
 
 const dbDeleteProduct = async (id) => {
-    const sql = `DELETE FROM "TESTNI_SALON".PROIZVOD
-        WHERE "ID" = ${id} CASCADE`;
+    const sql = `DELETE  FROM "TESTNI_SALON".PROIZVOD CASCADE
+        WHERE "ID" = ${id} `;
     try {
         await query(sql, []);
     } catch (err) {

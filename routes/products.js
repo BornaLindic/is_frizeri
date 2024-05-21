@@ -5,7 +5,6 @@ import { addProductTemplate,
          deleteProduct,
          getProduct,
          getProducts,
-         getProductsAdmin,
          removeProductFromFavorites,
          updateProduct } from "../controllers/products.js";
 import { verifyAdmin } from "../utils/verify.js";
@@ -13,7 +12,6 @@ import { verifyAdmin } from "../utils/verify.js";
 const router = express.Router();
 
 router.get("/", getProducts);
-router.get("/admin", /*verifyAdmin,*/ getProductsAdmin);
 router.get("/updateProduct", /*verifyAdmin,*/ getProduct);
 router.get("/addProduct", /*verifyAdmin,*/ addProductTemplate);
 router.get("/favor", /*verifyUser,*/ addProductToFavorites);

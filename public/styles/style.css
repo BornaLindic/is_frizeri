@@ -340,6 +340,30 @@ body {
   margin-bottom: 60px;
 }
 
+.form-el {
+  margin: 10px;
+}
+
+#opis {
+  width: 500px;
+}
+
+#delete-product {
+  color: white;
+  background-color: red;
+  margin: 10px
+}
+
+#update-product {
+  color: white;
+  background-color: green;
+  margin: 10px
+}
+
+#update-success {
+  color: rgb(53, 228, 0);
+}
+
 /* Animations are cool!  */
 @-webkit-keyframes moveFromTopFade {
   from { opacity: .3; height:0px; margin-top:0px; -webkit-transform: translateY(-100%); }

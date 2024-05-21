@@ -29,49 +29,13 @@ export const getProducts = async (req, res, next) => {
 };
 
 
-export const getProductsAdmin = async (req, res, next) => {
-    try {
-        let products = await Product.fetchAll();
-        let care = [];
-        let styling = [];
-        let equipment = [];
-
-        for(let p of products) {
-            if (p.idKategorija == 0) {
-                care.push(p);
-            } else if (p.idKategorija == 1) {
-                styling.push(p);
-            } else {
-                equipment.push(p)
-            }
-        }
-
-        res.render("../views/productsAdmin", {
-                care: care,
-                styling: styling,
-                equipment: equipment
-            }
-        )
-    } catch(err) {
-        next(err)
-    }
-};
-
-
 export const getProduct = async (req, res, next) => {
     try {
         let product = await Product.fetchByProductId(req.query.id)
 
-        if (product.idKategorija == 0) {
-            product.kategorija = "Njega";
-        } else if (product.idKategorija == 1) {
-            product.kategorija = "Styling";
-        } else {
-            product.kategorija = "Operam";
-        }
-
         res.render("../views/updateProduct", {
-                product: product
+                product: product,
+                success: req.query.success
             }
         )
     } catch(err) {
@@ -93,12 +57,13 @@ export const createProduct = async (req, res, next) => {
             req.body.id_kategorija,
             req.body.ime,
             req.body.opis,
-            req.body.cijena,
-            req.body.slika
+            req.body.cijena
         )
 
+        console.log(newProduct);
+
         await newProduct.persist()
-        res.status(200).json(JSON.stringify(newProduct))
+        res.redirect("/products")
     } catch(err) {
         next(err)
     }
@@ -118,7 +83,7 @@ export const updateProduct = async (req, res, next) => {
         console.log
 
         await Product.updateProduct(newProduct)
-        res.status(200).json(JSON.stringify(newProduct))
+        res.redirect(`/products/updateProduct?id=${req.body.id}&success=true`)
     } catch(err) {
         next(err)
     }

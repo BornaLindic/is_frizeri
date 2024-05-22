@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Doradi dostavu
+        link(rel="stylesheet" href="../styles/style.css")
+        
+    body
+        a(href=`/products/updateProduct?id=${product.id}` class="event-link") Nazad
+
+        h1 Ažuriranje podataka za: #{delivery.supplier.ime} - #{product.ime}
+   
+
+        form(action="/deliveries/putDelivery" method="post")
+            div(class="container")
+                div(class="form-el")
+                    label(for="Cijena") <b>Nabavna cijena: </b>
+                    input(type="text" name="cijena" id="cijena" required value=delivery.buyingPrice)
+
+                div(class="form-el")
+                    label(for="Dana_isporuke") <b>Prosječno dana potrebno za isporuku: </b>
+                    input(type="text" name="dana_isporuke" id="dana_isporuke" required value=delivery.avgDaysToDeliver)
+
+                input(type="hidden" id="id" name="supplier_id" value=`${delivery.supplier.id}`)
+                input(type="hidden" id="id" name="product_id" value=`${product.id}`)
+
+                button(id="update-supplier" type="submit") Ažuriraj
+
+        if success
+            p(id="update-success") Podaci ažurirani!
+
+
+                
+            

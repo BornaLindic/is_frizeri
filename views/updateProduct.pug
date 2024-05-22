@@ -56,5 +56,19 @@ html(lang="en")
 
         hr
 
+        h2 Dostave
+        a(href=`../deliveries/addDelivery?product_id=${product.id}` class="event-link") Dodaj dostavu!
+        div(class="gallery")
+            each delivery in deliveries
+                div(class="gallery-item")
+                    div(class="image-container")
+                        h3(style="color:yellow") <b>#{delivery.supplier.ime}</b>
+                        p #{delivery.supplier.email}
+                        p Nabavna cijena: <b>#{delivery.buyingPrice} €</b>
+                        p Prosječno dana potrebnih za dostavu: <b>#{delivery.avgDaysToDeliver}</b>
+                        a(href=`../deliveries/updateDelivery?product_id=${product.id}&supplier_id=${delivery.supplier.id}` class="event-link") Uredi! <br>
+                        button(id="delete-product" onclick=`if(confirm("Potvrdite brisanje!")){fetch('/deliveries?id_product='+${product.id}+'&id_supplier='+${delivery.supplier.id},{method: 'DELETE'}); window.location.href = "/products/updateProduct?id="+${product.id};}`) Obriši!
+
+
                 
             

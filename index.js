@@ -8,6 +8,7 @@ import calendarRouter from "./routes/calendar.js"
 import reservationRouter from "./routes/reservations.js"
 import productsRouter from "./routes/products.js"
 import suppliersRouter from "./routes/suppliers.js"
+import deliveriesRouter from "./routes/deliveries.js"
 
 const app = express();
 app.set('view engine', 'pug')
@@ -25,6 +26,7 @@ app.use("/calendar", calendarRouter);
 app.use("/reservation", reservationRouter);
 app.use("/products", productsRouter);
 app.use("/suppliers", suppliersRouter);
+app.use("/deliveries", deliveriesRouter);
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;

@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Dodaj dostavu
+        link(rel="stylesheet" href="../styles/style.css")
+        
+    body
+        a(href=`/products/updateProduct?id=${product.id}` class="event-link") Nazad
+
+        form(id="deliveryForm" action="/deliveries" method="post")
+            div(class="container")
+                h1 Dodavanje dostave za proizvod: #{product.ime}
+                p Ispunite podatke o novoj dostavi
+
+                hr
+
+                div(class="form-el")
+                    label(for="Dobavljac") <b>Dobavljač: </b>
+                    select(name="id_dobavljaca" id="id_dobavljaca")
+                        each supplier in suppliers
+                            option(value=supplier.id) #{supplier.ime}
+
+                div(class="form-el")
+                    label(for="Cijena") <b>Nabavna cijena: </b>
+                    input(type="text" placeholder="0" name="cijena" id="cijena" required)
+
+                div(class="form-el")
+                    label(for="Dana_isporuke") <b>Prosječno dana potrebno za isporuku: </b>
+                    input(type="text" placeholder="0" name="dana_isporuke" id="dana_isporuke" required)
+
+                input(type="hidden" id="product_id" name="product_id" value=`${product.id}`)
+                
+
+                button(type="submit") Dodaj
+
+                
+            

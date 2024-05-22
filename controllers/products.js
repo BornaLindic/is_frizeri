@@ -1,3 +1,4 @@
+import Delivery from "../models/Delivery.js";
 import Product from "../models/Product.js";
 
 export const getProducts = async (req, res, next) => {
@@ -31,10 +32,14 @@ export const getProducts = async (req, res, next) => {
 
 export const getProduct = async (req, res, next) => {
     try {
-        let product = await Product.fetchByProductId(req.query.id)
+        let product = await Product.fetchByProductId(req.query.id);
+        let deliveries = await Delivery.fetchByProductId(req.query.id);
+
+        console.log(deliveries);
 
         res.render("../views/updateProduct", {
                 product: product,
+                deliveries: deliveries,
                 success: req.query.success
             }
         )
@@ -79,8 +84,6 @@ export const updateProduct = async (req, res, next) => {
             req.body.cijena,
         )
         newProduct.id = req.body.id
-
-        console.log
 
         await Product.updateProduct(newProduct)
         res.redirect(`/products/updateProduct?id=${req.body.id}&success=true`)

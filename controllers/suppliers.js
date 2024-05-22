@@ -6,8 +6,13 @@ export const getSuppliers = async (req, res, next) => {
     try {
         let suppliers = await Supplier.fetchAll();
 
+        if(req.query.search) {
+            suppliers = suppliers.filter((s) => {return s.ime.toUpperCase() == req.query.search.toUpperCase()});
+        }
+
         res.render("../views/suppliers", {
-                suppliers: suppliers
+                suppliers: suppliers,
+                search: req.query.search
             }
         )
     } catch(err) {

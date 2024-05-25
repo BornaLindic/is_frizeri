@@ -48,14 +48,13 @@ export const createSupplier = async (req, res, next) => {
 
         if(!checkEmail(req.body.email)) {
             next(createError(400, 'Bad email'))
+            return
         }
 
         let newSupplier = new Supplier (
             req.body.ime,
             req.body.email
         )
-
-        console.log(newSupplier);
 
         await newSupplier.persist()
         res.redirect("/suppliers")
@@ -69,6 +68,7 @@ export const updateSupplier = async (req, res, next) => {
     try {
         if(!checkEmail(req.body.email)) {
             next(createError(400, 'Bad email'))
+            return
         }
 
         let newSupplier = new Supplier (

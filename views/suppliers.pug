@@ -25,7 +25,7 @@ html(lang="en")
             div(class="gallery")
                 each supplier in suppliers
                     div(class="gallery-item")
-                        div(class="image-container") 
+                        div(class="image-container" id=`${supplier.ime}`) 
                             h3 #{supplier.ime}
                             p #{supplier.email}
                             a(href=`/suppliers/updateSupplier?id=${supplier.id}` class="event-link") Detalji

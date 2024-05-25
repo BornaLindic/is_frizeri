@@ -127,8 +127,8 @@ CREATE TABLE "TESTNI_SALON".DOBAVLJAC (
 
 
 -------------------------------- PROIZVOD_DOBAVLJAC --------------------------------------
-DROP TABLE IF EXISTS "TESTNI_SALON".OMILJENI_PROIZVOD;
-CREATE TABLE "TESTNI_SALON".OMILJENI_PROIZVOD (
+DROP TABLE IF EXISTS "TESTNI_SALON".PROIZVOD_DOBAVLJAC;
+CREATE TABLE "TESTNI_SALON".PROIZVOD_DOBAVLJAC (
 	ID_PROIZVOD 		INTEGER,
 	ID_DOBAVLJAC 		INTEGER,
 	NABAVNA_CIJENA		NUMERIC(10,2),
@@ -181,10 +181,15 @@ TRUNCATE TABLE "TESTNI_SALON".dobavljac
 INSERT INTO "TESTNI_SALON".dobavljac VALUES
 (default, 'misko.miskic@gmail.com', 'Misko'),
 (default, 'joza.jozic@hotmail.com', 'Joza'),
-(default, 'stef.stefanovic@gmail.com', 'Stef')
+(default, 'stef.stefanovic@gmail.com', 'Stef');
 
 
+select * from "TESTNI_SALON".proizvod_dobavljac;
 
+TRUNCATE TABLE "TESTNI_SALON".proizvod_dobavljac
+INSERT INTO "TESTNI_SALON".proizvod_dobavljac VALUES
+(39, 14, 2, 10),
+(39, 15, 2.5, 9);
 
 
 

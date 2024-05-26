@@ -18,5 +18,3 @@
 2. npm start
 
 Za admin privileges potrebno je kreirati račun, zatim ručno u bazi dignuti role na 1 i onda se ponovno ulogirati. \
-Također nema default proizvoda za prodaju. \
-Obje ove stvari ćemo vidjeti kako planiraju testirati pa potrebi dodavati skripte za automatsko punjenje.
